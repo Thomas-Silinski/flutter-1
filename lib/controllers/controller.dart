@@ -5,7 +5,6 @@ abstract class AppController extends GetxController {
   final GetStorage _storage = GetStorage();
   abstract String storeId;
 
-  // todo: may not be a list, for exemple current loggedIn user controller
   List<dynamic> get storage => _storage.read(storeId);
 
   set storage(List<dynamic> data) {

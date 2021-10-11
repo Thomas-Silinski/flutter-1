@@ -15,6 +15,7 @@ class ArticleController extends AppController {
 
   List<dynamic> _jsonList = <dynamic>[];
 
+  // ? optional ?
   @override
   Future<void> onInit() async {
     await super.onInit();

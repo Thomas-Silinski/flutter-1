@@ -14,6 +14,7 @@ class UserController extends AppController {
 
   User? currentUser;
 
+  // ? optional ?
   @override
   Future<void> onInit() async {
     await super.onInit();
