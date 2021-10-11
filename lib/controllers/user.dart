@@ -24,12 +24,7 @@ class UserController extends AppController {
     _jsonList = storage;
 
     for (final dynamic user in _jsonList) {
-      _users.add(User(
-        name: user['name'],
-        email: user['email'],
-        password: user['password'],
-        id: user['id'],
-      ));
+      _users.add(User.fromJson(user));
     }
   }
 
@@ -42,12 +37,7 @@ class UserController extends AppController {
   void create(User user) {
     _users.add(user);
 
-    _jsonList.add(<String, String>{
-      'name': user.name,
-      'email': user.email,
-      'password': user.password,
-      'id': user.id,
-    });
+    _jsonList.add(user.toJson());
     storage = _jsonList;
   }
 

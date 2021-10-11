@@ -25,11 +25,7 @@ class ArticleController extends AppController {
     _jsonList = storage;
 
     for (final dynamic article in _jsonList) {
-      _articles.add(Article(
-        title: article['title'],
-        content: article['content'],
-        id: article['id'],
-      ));
+      _articles.add(Article.fromJson(article));
     }
   }
 
@@ -42,11 +38,7 @@ class ArticleController extends AppController {
   void create(Article article) {
     _articles.add(article);
 
-    _jsonList.add(<String, String>{
-      'title': article.title,
-      'content': article.content,
-      'id': article.id,
-    });
+    _jsonList.add(article.toJson());
     storage = _jsonList;
   }
 
