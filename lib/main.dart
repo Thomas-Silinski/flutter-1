@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:project/home.dart';
 import 'package:project/screens/auth/register_screen.dart';
 
@@ -16,7 +17,7 @@ class Routing extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       theme: Themes().darkTheme,
       initialRoute: '/',
       routes: <String, Widget Function(BuildContext)>{
