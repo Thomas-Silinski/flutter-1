@@ -14,14 +14,13 @@ class UserController extends AppController {
 
   User? currentUser;
 
-  // ? optional ?
   @override
   Future<void> onInit() async {
     await super.onInit();
+    _restore();
   }
 
-  @override
-  void restore() {
+  void _restore() {
     _jsonList = storage;
 
     for (final dynamic user in _jsonList) {

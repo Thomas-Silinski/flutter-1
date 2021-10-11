@@ -15,14 +15,13 @@ class ArticleController extends AppController {
 
   List<dynamic> _jsonList = <dynamic>[];
 
-  // ? optional ?
   @override
   Future<void> onInit() async {
     await super.onInit();
+    _restore();
   }
 
-  @override
-  void restore() {
+  void _restore() {
     _jsonList = storage;
 
     for (final dynamic article in _jsonList) {

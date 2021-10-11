@@ -2,11 +2,10 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 abstract class AppController extends GetxController {
-  final GetStorage _storage = GetStorage();
   abstract String storeId;
 
+  final GetStorage _storage = GetStorage();
   List<dynamic> get storage => _storage.read(storeId);
-
   set storage(List<dynamic> data) {
     _storage.write(storeId, data);
   }
@@ -15,9 +14,5 @@ abstract class AppController extends GetxController {
   Future<void> onInit() async {
     super.onInit();
     await _storage.writeIfNull(storeId, <dynamic>[]);
-    restore();
   }
-
-  /// Populates the controller from the local storage
-  void restore();
 }
