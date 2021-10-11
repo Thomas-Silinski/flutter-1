@@ -30,5 +30,26 @@ class Themes {
         ),
       ),
     ),
+    inputDecorationTheme: InputDecorationTheme(
+      fillColor: kDarkGrey.withOpacity(0.6),
+      filled: true,
+      contentPadding: const EdgeInsets.only(left: 20),
+      border: const OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(50)),
+        // borderSide: BorderSide(color: kSecondaryColor),
+      ),
+      errorBorder: OutlineInputBorder(
+        borderSide: const BorderSide(color: Colors.red),
+        borderRadius: BorderRadius.circular(50.0),
+      ),
+      focusedBorder: const OutlineInputBorder(
+        borderSide: BorderSide(
+          color: Colors.white,
+        ),
+        borderRadius: BorderRadius.all(
+          Radius.circular(50),
+        ),
+      ),
+    ),
   );
 }

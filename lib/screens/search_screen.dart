@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project/components/search_bar.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({Key? key}) : super(key: key);
@@ -12,17 +13,23 @@ class _SearchScreenState extends State<SearchScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Center(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text(
-                'SEARCH PAGE',
-                style: Theme.of(context).textTheme.headline1,
+              Padding(
+                padding: const EdgeInsets.only(
+                  top: 20,
+                ),
+                child: Text(
+                  'SEARCH',
+                  style: Theme.of(context).textTheme.headline1,
+                ),
               ),
-              Text(
-                "Blop I'm the subtitle",
-                style: Theme.of(context).textTheme.bodyText1,
+              Padding(
+                padding: const EdgeInsets.only(top: 10.0),
+                child: SearchBarWidget(),
               ),
             ],
           ),
