@@ -10,17 +10,37 @@ class ArticleController extends AppController {
   @override
   String storeId = 'articles';
 
-  final List<Article> articles = <Article>[].obs;
+  final List<Article> _articles = <Article>[].obs;
+  List<Article> get articles => _articles;
+
   List<dynamic> _jsonList = <dynamic>[];
 
   @override
-  void onInit() {
-    _restoreArticles();
-    super.onInit();
+  Future<void> onInit() async {
+    await super.onInit();
   }
 
-  void addAndStoreArticle(Article article) {
-    articles.add(article);
+  @override
+  void restore() {
+    _jsonList = storage;
+
+    for (final dynamic article in _jsonList) {
+      _articles.add(Article(
+        title: article['title'],
+        content: article['content'],
+        id: article['id'],
+      ));
+    }
+  }
+
+  void erase() {
+    _articles.clear();
+    _jsonList.clear();
+    storage = _jsonList;
+  }
+
+  void create(Article article) {
+    _articles.add(article);
 
     _jsonList.add(<String, String>{
       'title': article.title,
@@ -30,20 +50,17 @@ class ArticleController extends AppController {
     storage = _jsonList;
   }
 
-  /// Populates the controller from the local storage
-  void _restoreArticles() {
-    _jsonList = storage;
+  Article? find(String id) => _articles.firstWhere(
+        (Article article) => article.id == id,
+      );
 
-    for (final dynamic article in _jsonList) {
-      articles.add(Article(
-        title: article['title'],
-        content: article['content'],
-        id: article['id'],
-      ));
-    }
-  }
+  Iterable<Article> search(String title) => _articles.where(
+        (Article article) => article.title == title,
+      );
 
-  void deleteAllArticlesWarning(String debug) {
-    assert(debug == "i know what i'm doing");
+  void delete(String id) {
+    _articles.removeWhere((Article article) => article.id == id);
+    _jsonList.removeWhere((dynamic article) => article['id'] == id);
+    storage = _jsonList;
   }
 }
