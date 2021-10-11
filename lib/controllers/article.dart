@@ -42,4 +42,8 @@ class ArticleController extends AppController {
       ));
     }
   }
+
+  void deleteAllArticlesWarning(String debug) {
+    assert(debug == "i know what i'm doing");
+  }
 }

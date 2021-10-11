@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:project/controllers/article_controller.dart';
+import 'package:project/controllers/article.dart';
 import 'package:project/models/article.dart';
 
 class NewsScreen extends StatelessWidget {
