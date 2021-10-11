@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:project/mock/store.dart';
 
 abstract class AppController extends GetxController {
   abstract String storeId;
@@ -13,6 +14,6 @@ abstract class AppController extends GetxController {
   @override
   Future<void> onInit() async {
     super.onInit();
-    await _storage.writeIfNull(storeId, <dynamic>[]);
+    await _storage.writeIfNull(storeId, mockedStores[storeId]);
   }
 }
