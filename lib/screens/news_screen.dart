@@ -32,7 +32,7 @@ class NewsScreen extends StatelessWidget {
                         (Article a) => Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            Text('${a.title}, ${a.content}'),
+                            Text('${a.title}, ${a.content}, ${a.id}'),
                             ElevatedButton(
                               onPressed: () => articleController.delete(a.id),
                               child: const Text('Delete this'),
