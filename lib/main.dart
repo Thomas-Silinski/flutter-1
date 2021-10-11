@@ -20,12 +20,12 @@ class Routing extends StatelessWidget {
     return GetMaterialApp(
       theme: Themes().darkTheme,
       initialRoute: '/',
-      routes: <String, Widget Function(BuildContext)>{
-        '/': (BuildContext context) => const SplashScreen(),
-        loginRoute: (BuildContext context) => const LoginScreen(),
-        registerRoute: (BuildContext context) => const RegisterScreen(),
-        homeRoute: (BuildContext context) => const Home(),
-      },
+      getPages: [
+        GetPage<SplashScreen>(name: '/', page: () => const SplashScreen()),
+        GetPage<LoginScreen>(name: loginRoute, page: () => const LoginScreen()),
+        GetPage<RegisterScreen>(name: registerRoute, page: () => const RegisterScreen()),
+        GetPage<Home>(name: homeRoute, page: () => const Home()),
+      ],
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:project/constants/routes.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -26,12 +27,11 @@ class _LoginScreenState extends State<LoginScreen> {
                 style: Theme.of(context).textTheme.bodyText1,
               ),
               ElevatedButton(
-                onPressed: () =>
-                    Navigator.popAndPushNamed(context, registerRoute),
+                onPressed: () => Get.offNamed(registerRoute),
                 child: const Text('GO TO REGISTER'),
               ),
               ElevatedButton(
-                onPressed: () => Navigator.popAndPushNamed(context, homeRoute),
+                onPressed: () => Get.offNamed(homeRoute),
                 child: const Text('GO TO HOME'),
               ),
             ],
