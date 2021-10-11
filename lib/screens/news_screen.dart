@@ -24,9 +24,32 @@ class NewsScreen extends StatelessWidget {
                 "Blop I'm the subtitle",
                 style: Theme.of(context).textTheme.bodyText1,
               ),
-              ...articleController.articles
-                  .map((Article a) => Text('${a.title}, ${a.content}'))
-                  .toList(),
+              Obx(
+                () => Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: articleController.articles
+                      .map(
+                        (Article a) => Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Text('${a.title}, ${a.content}'),
+                            ElevatedButton(
+                              onPressed: () => articleController.delete(a.id),
+                              child: const Text('Delete this'),
+                            ),
+                          ],
+                        ),
+                      )
+                      .toList(),
+                ),
+              ),
+              ElevatedButton(
+                onPressed: () => articleController.create(Article(
+                  content: 'fake content',
+                  title: 'fake title',
+                )),
+                child: const Text('Create Article'),
+              ),
             ],
           ),
         ),
