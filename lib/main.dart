@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:project/home.dart';
 import 'package:project/screens/auth/register_screen.dart';
 
@@ -8,7 +9,8 @@ import 'screens/auth/login_screen.dart';
 import 'screens/splash_screen.dart';
 import 'themes/themes.dart';
 
-void main() {
+void main() async {
+  await GetStorage.init();
   runApp(const Routing());
 }
 
