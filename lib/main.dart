@@ -21,10 +21,22 @@ class Routing extends StatelessWidget {
       theme: Themes().darkTheme,
       initialRoute: '/',
       getPages: [
-        GetPage<SplashScreen>(name: '/', page: () => const SplashScreen()),
-        GetPage<LoginScreen>(name: loginRoute, page: () => const LoginScreen()),
-        GetPage<RegisterScreen>(name: registerRoute, page: () => const RegisterScreen()),
-        GetPage<Home>(name: homeRoute, page: () => const Home()),
+        GetPage<SplashScreen>(
+          name: '/',
+          page: () => const SplashScreen(),
+        ),
+        GetPage<LoginScreen>(
+          name: loginRoute,
+          page: () => const LoginScreen(),
+        ),
+        GetPage<RegisterScreen>(
+          name: registerRoute,
+          page: () => const RegisterScreen(),
+        ),
+        GetPage<Home>(
+          name: homeRoute,
+          page: () => const Home(),
+        ),
       ],
     );
   }
