@@ -1,14 +1,6 @@
-import 'dart:math';
-import 'dart:convert';
+import 'model.dart';
 
-String randomId(int len) {
-  Random random = Random.secure();
-  List<int> values = List<int>.generate(len, (int i) => random.nextInt(255));
-  return base64UrlEncode(values);
-}
-
-class Article {
-  String id;
+class Article extends Model {
   String title;
   String content;
 
@@ -16,5 +8,5 @@ class Article {
     String? id,
     required this.title,
     required this.content,
-  }) : id = id ?? randomId(15);
+  }) : super(id);
 }
