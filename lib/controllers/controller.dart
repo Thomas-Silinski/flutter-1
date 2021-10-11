@@ -5,6 +5,7 @@ abstract class AppController extends GetxController {
   final GetStorage _storage = GetStorage();
   abstract String storeId;
 
+  // todo: may not be a list, for exemple current loggedIn user controller
   List<dynamic> get storage => _storage.read(storeId);
 
   set storage(List<dynamic> data) {
@@ -12,8 +13,12 @@ abstract class AppController extends GetxController {
   }
 
   @override
-  void onInit() {
-    _storage.writeIfNull(storeId, <dynamic>[]);
+  Future<void> onInit() async {
     super.onInit();
+    await _storage.writeIfNull(storeId, <dynamic>[]);
+    restore();
   }
+
+  /// Populates the controller from the local storage
+  void restore();
 }
