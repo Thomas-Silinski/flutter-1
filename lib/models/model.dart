@@ -10,5 +10,9 @@ String randomId(int len) {
 abstract class Model {
   String id;
 
-  Model(String? id) : id = id ?? randomId(15);
+  Model({String? id}) : id = id ?? randomId(15);
+
+  Model.fromJson(Map<String, dynamic> json) : id = json['id'];
+
+  Map<String, dynamic> toJson();
 }
