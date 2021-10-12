@@ -17,7 +17,7 @@ class _HomeState extends State<Home> {
   static final List<Widget> _widgetOptions = <Widget>[
     NewsScreen(),
     const SearchScreen(),
-    ProfileScreen(),
+    const ProfileScreen(),
   ];
   final ArticleController articleController = Get.put(ArticleController());
 
