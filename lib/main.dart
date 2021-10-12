@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:project/home.dart';
 import 'package:project/screens/auth/register_screen.dart';
 
@@ -7,7 +9,8 @@ import 'screens/auth/login_screen.dart';
 import 'screens/splash_screen.dart';
 import 'themes/themes.dart';
 
-void main() {
+void main() async {
+  await GetStorage.init();
   runApp(const Routing());
 }
 
@@ -16,15 +19,27 @@ class Routing extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       theme: Themes().darkTheme,
       initialRoute: '/',
-      routes: <String, Widget Function(BuildContext)>{
-        '/': (BuildContext context) => const SplashScreen(),
-        loginRoute: (BuildContext context) => const LoginScreen(),
-        registerRoute: (BuildContext context) => const RegisterScreen(),
-        homeRoute: (BuildContext context) => const Home(),
-      },
+      getPages: [
+        GetPage<SplashScreen>(
+          name: '/',
+          page: () => const SplashScreen(),
+        ),
+        GetPage<LoginScreen>(
+          name: loginRoute,
+          page: () => const LoginScreen(),
+        ),
+        GetPage<RegisterScreen>(
+          name: registerRoute,
+          page: () => const RegisterScreen(),
+        ),
+        GetPage<Home>(
+          name: homeRoute,
+          page: () => const Home(),
+        ),
+      ],
     );
   }
 }
