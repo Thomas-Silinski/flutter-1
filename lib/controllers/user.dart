@@ -46,7 +46,7 @@ class UserController extends AppController {
       );
 
   Iterable<User> search(String name) => _users.where(
-        (User user) => user.name == name,
+        (User user) => user.name.contains(name),
       );
 
   void delete(String id) {
