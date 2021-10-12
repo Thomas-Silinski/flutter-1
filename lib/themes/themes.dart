@@ -6,6 +6,7 @@ class Themes {
   final ThemeData darkTheme = ThemeData.dark().copyWith(
     primaryColor: kSecondaryColor,
     scaffoldBackgroundColor: kSecondaryColor,
+    cardColor: kDarkGrey,
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: kBottonNavigationMenu,
       unselectedItemColor: kDarkGrey,
@@ -14,6 +15,10 @@ class Themes {
     textTheme: TextTheme(
       headline1: GoogleFonts.montserrat(
         fontSize: 30,
+        color: Colors.white,
+      ),
+      headline2: GoogleFonts.montserrat(
+        fontSize: 20,
         color: Colors.white,
       ),
       bodyText1: GoogleFonts.montserrat(
