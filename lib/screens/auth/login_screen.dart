@@ -12,10 +12,10 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final UserController articleController = Get.put(UserController());
+  final UserController userController = Get.put(UserController());
 
   void login() {
-    User? user = articleController.login(
+    User? user = userController.login(
       'toto@haricot.mail',
       '5up3R-51cR3T-pA55W0RD',
     );
