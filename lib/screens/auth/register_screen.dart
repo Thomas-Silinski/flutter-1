@@ -30,10 +30,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 onPressed: () => Get.offNamed(loginRoute),
                 child: const Text('GO TO LOGIN'),
               ),
-              ElevatedButton(
-                onPressed: () => Get.offNamed(homeRoute),
-                child: const Text('GO TO HOME'),
-              ),
             ],
           ),
         ),
