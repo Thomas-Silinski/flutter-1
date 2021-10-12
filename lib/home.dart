@@ -16,7 +16,7 @@ class _HomeState extends State<Home> {
   int _selectedIndex = 0;
   static final List<Widget> _widgetOptions = <Widget>[
     NewsScreen(),
-    const SearchScreen(),
+    SearchScreen(),
     const ProfileScreen(),
   ];
   final ArticleController articleController = Get.put(ArticleController());

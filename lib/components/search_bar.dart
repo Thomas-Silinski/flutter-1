@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 
 class SearchBarWidget extends StatelessWidget {
-  SearchBarWidget({Key? key}) : super(key: key);
+  const SearchBarWidget({
+    Key? key,
+    required this.controller,
+  }) : super(key: key);
 
-  final TextEditingController _controller = TextEditingController();
+  final TextEditingController controller;
 
   @override
   Widget build(BuildContext context) {
     return TextField(
       textAlignVertical: TextAlignVertical.center,
-      controller: _controller,
+      controller: controller,
       decoration: const InputDecoration(
         prefixIcon: Padding(
           padding: EdgeInsets.symmetric(horizontal: 10),

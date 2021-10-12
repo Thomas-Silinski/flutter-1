@@ -16,6 +16,14 @@ class Themes {
         fontSize: 30,
         color: Colors.white,
       ),
+      headline2: GoogleFonts.montserrat(
+        fontSize: 18,
+        color: Colors.white,
+      ),
+      headline3: GoogleFonts.montserrat(
+        fontSize: 20,
+        color: Colors.white,
+      ),
       bodyText1: GoogleFonts.montserrat(
         fontSize: 15,
         color: Colors.white,
