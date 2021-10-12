@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:project/components/appbar.dart';
 import 'package:project/components/post.dart';
 
 class NewsScreen extends StatelessWidget {
@@ -10,19 +9,19 @@ class NewsScreen extends StatelessWidget {
     final ButtonStyle styleButton =
         ElevatedButton.styleFrom(textStyle: const TextStyle(fontSize: 20), fixedSize: Size(200, 200));
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'NEWS',
-          style: Theme.of(context).textTheme.headline2,
-        ),
-        actions: <Widget>[
-          ElevatedButton(
-            style: styleButton,
-            onPressed: () {},
-            child: const Text('+  Create Article'),
-          ),
-        ],
-      ),
+      // appBar: AppBar(
+      //   title: Text(
+      //     'NEWS',
+      //     style: Theme.of(context).textTheme.headline2,
+      //   ),
+      //   actions: <Widget>[
+      //     ElevatedButton(
+      //       style: styleButton,
+      //       onPressed: () {},
+      //       child: const Text('+  Create Article'),
+      //     ),
+      //   ],
+      // ),
       body: Container(
         child: Column(
           mainAxisSize: MainAxisSize.max,
