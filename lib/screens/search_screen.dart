@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:project/components/search_bar.dart';
+import 'package:project/controllers/article.dart';
 
-class SearchScreen extends StatefulWidget {
-  SearchScreen({Key? key}) : super(key: key);
+class SearchScreen extends GetView<ArticleController> {
+  const SearchScreen({Key? key}) : super(key: key);
 
-  @override
-  _SearchScreenState createState() => _SearchScreenState();
-}
-
-class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

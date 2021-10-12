@@ -6,7 +6,7 @@ import 'package:project/models/article.dart';
 class NewsScreen extends StatelessWidget {
   NewsScreen({Key? key}) : super(key: key);
 
-  final ArticleController articleController = Get.put(ArticleController());
+  final ArticleController articleController = Get.find<ArticleController>();
 
   @override
   Widget build(BuildContext context) {
