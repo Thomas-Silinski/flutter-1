@@ -2,7 +2,7 @@ typedef Data = Map<String, String>;
 typedef OneStore = List<Data>;
 typedef AllStore = Map<String, OneStore>;
 
-// todo: change fake data
+// TODO(Lorenzo): change fake data
 final OneStore mockedArticles = <Data>[
   <String, String>{
     'title': 'La famine dans le monde !',
