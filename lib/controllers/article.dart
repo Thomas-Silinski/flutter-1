@@ -47,7 +47,8 @@ class ArticleController extends AppController {
       );
 
   Iterable<Article> search(String title) => _articles.where(
-        (Article article) => article.title.contains(title),
+        (Article article) =>
+            article.title.toLowerCase().contains(title.toLowerCase()),
       );
 
   void delete(String id) {
