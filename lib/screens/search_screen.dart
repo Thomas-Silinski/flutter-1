@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:project/components/list_articles_search.dart';
-import 'package:project/components/search_bar.dart';
+import 'package:project/components/search_screen/list_preview_articles.dart';
+import 'package:project/components/search_screen/search_bar.dart';
 import 'package:project/controllers/article.dart';
 
 class SearchScreen extends GetView<ArticleController> {
@@ -58,7 +58,7 @@ class _SearchBody extends StatelessWidget {
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.only(top: 10),
-              child: ListArticlesSearch(
+              child: ListPreviewArticles(
                 listArticles: controller.articles,
                 title: 'Top articles',
                 size: 170,
@@ -66,7 +66,7 @@ class _SearchBody extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.only(top: 10),
-              child: ListArticlesSearch(
+              child: ListPreviewArticles(
                 listArticles: controller.articles,
                 title: 'Articles recommend for you',
                 size: 170,
@@ -74,7 +74,7 @@ class _SearchBody extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.only(top: 10),
-              child: ListArticlesSearch(
+              child: ListPreviewArticles(
                 listArticles: controller.articles,
                 title: 'Users recommend for you',
                 size: 170,

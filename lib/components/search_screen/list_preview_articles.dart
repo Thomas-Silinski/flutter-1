@@ -3,8 +3,8 @@ import 'package:project/components/gradient_text.dart';
 import 'package:project/constants/colors.dart';
 import 'package:project/models/article.dart';
 
-class ListArticlesSearch extends StatelessWidget {
-  const ListArticlesSearch({
+class ListPreviewArticles extends StatelessWidget {
+  const ListPreviewArticles({
     Key? key,
     required this.listArticles,
     required this.title,
