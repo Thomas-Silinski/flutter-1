@@ -2,12 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project/components/search_screen/list_preview_articles.dart';
 import 'package:project/components/search_screen/search_bar.dart';
+import 'package:project/constants/colors.dart';
 import 'package:project/controllers/article.dart';
+import 'package:project/models/article.dart';
 
 class SearchScreen extends GetView<ArticleController> {
   SearchScreen({Key? key}) : super(key: key);
 
-  final TextEditingController _seachController = TextEditingController();
+  final RxString _searchInput = ''.obs;
+  final RxList<Article> _searchedArticle = <Article>[].obs;
+
+  void _onSearchChanged(String value) {
+    _searchInput.value = value;
+    _searchedArticle.value = controller.search(value).toList();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,10 +38,30 @@ class SearchScreen extends GetView<ArticleController> {
               Padding(
                 padding: const EdgeInsets.only(top: 10.0),
                 child: SearchBarWidget(
-                  controller: _seachController,
+                  onChanged: _onSearchChanged,
                 ),
               ),
-              _SearchBody(controller: controller)
+              Obx(
+                () => _searchInput.value.isEmpty
+                    ? _SearchBody(controller: controller)
+                    // TODO(Melvyn) : Replace by widget in homescreen
+                    : Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 10.0),
+                          child: ListView.builder(
+                            itemBuilder: (BuildContext context, int index) =>
+                                ListTile(
+                              leading: const Icon(Icons.home),
+                              title: Text(
+                                _searchedArticle[index].title,
+                              ),
+                              tileColor: kDarkGrey,
+                            ),
+                            itemCount: _searchedArticle.length,
+                          ),
+                        ),
+                      ),
+              ),
             ],
           ),
         ),
