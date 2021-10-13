@@ -35,36 +35,56 @@ class ListPreviewArticles extends StatelessWidget {
                 itemCount: listArticles.length,
                 itemBuilder: (BuildContext context, int index) => SizedBox(
                   width: size,
-                  child: Card(
-                    color: kDarkGrey,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        Expanded(
-                          child: GradientText(
-                            text: listArticles[index].title,
-                            gradient: const LinearGradient(
-                              colors: <Color>[
-                                kPrimaryGradient1,
-                                kPrimaryGradient2,
-                              ],
-                            ),
-                            style: Theme.of(context).textTheme.headline3,
-                          ),
-                        ),
-                        // TODO(Melvyn): replace by image of article
-                        Image.network(
-                          'https://www.japanfm.fr/wp-content/uploads/2021/03/Scissor-Seven-Saison-3-Date-de-sortie-et-a-quoi.jpg',
-                          fit: BoxFit.cover,
-                        )
-                      ],
-                    ),
+                  child: _CardArticle(
+                    title: listArticles[index].title,
+                    imgUrl:
+                        'https://www.japanfm.fr/wp-content/uploads/2021/03/Scissor-Seven-Saison-3-Date-de-sortie-et-a-quoi.jpg',
                   ),
                 ),
               ),
             ),
           ),
+        ],
+      ),
+    );
+  }
+}
+
+class _CardArticle extends StatelessWidget {
+  const _CardArticle({
+    Key? key,
+    required this.title,
+    required this.imgUrl,
+  }) : super(key: key);
+
+  final String title;
+  final String imgUrl;
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      color: kDarkGrey,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          Expanded(
+            child: GradientText(
+              text: title,
+              gradient: const LinearGradient(
+                colors: <Color>[
+                  kPrimaryGradient1,
+                  kPrimaryGradient2,
+                ],
+              ),
+              style: Theme.of(context).textTheme.headline3,
+            ),
+          ),
+          // TODO(Melvyn): replace by image of article
+          Image.network(
+            imgUrl,
+            fit: BoxFit.cover,
+          )
         ],
       ),
     );
