@@ -33,7 +33,7 @@ class NewsScreen extends StatelessWidget {
                     child: ElevatedButton(
                       style: styleButton,
                       onPressed: () => articleController.create(Article(
-                        content: 'fake content',
+                        content: 'fake content fake content vfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake content',
                         title: 'fake title',
                       )),
                       child: const Text('+  Create Article'),

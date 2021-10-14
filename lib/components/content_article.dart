@@ -17,9 +17,9 @@ class ContentArticle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 5.0),
+      padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 5.0),
       child: SizedBox(
-        height: 100,
+        height: 105,
         width: 400,
         child: Row(
           children: <Widget>[
@@ -29,7 +29,7 @@ class ContentArticle extends StatelessWidget {
             ),
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 5.0),
+                padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 5.0),
                 child: _ArticleDescription(
                   title: title,
                   subtitle: subtitle,
@@ -60,45 +60,50 @@ class _ArticleDescription extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.max,
       children: <Widget>[
         Expanded(
           flex: 1,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text(
-                title,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFFF54B64),
+              Expanded(child: Text(
+                  title,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                    fontSize: 15.0,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFFF54B64),
+                  ),
                 ),
               ),
-              Text(
-                subtitle,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                style: const TextStyle(
-                  fontSize: 12.0,
-                  color: Colors.white,
+              Expanded(child: Text(
+                  subtitle,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                    fontSize: 11.0,
+                    color: Colors.white,
+                  ),
                 ),
               ),
             ],
           ),
         ),
-        Align(
-          alignment: Alignment.bottomRight,
-          child: TextButton(
-            style: TextButton.styleFrom(
-              primary: Colors.white,
+        Expanded(child: Align(
+            alignment: Alignment.bottomRight,
+            child: TextButton(
+              style: TextButton.styleFrom(
+                primary: Colors.white,
+              ),
+              child: const Text('Delete'),
+              onPressed: () {
+                // articleController.delete(id);
+              },
             ),
-            child: const Text('Delete'),
-            onPressed: () {
-              // articleController.delete(id);
-            },
           ),
-        ),
+        )
       ],
     );
   }
