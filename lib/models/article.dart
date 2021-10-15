@@ -4,12 +4,14 @@ class Article extends Model {
   String title;
   String content;
   String author;
+  String thumbnail;
 
   Article({
     String? id,
     required this.title,
     required this.content,
     required this.author,
+    required this.thumbnail,
   }) : super(id: id);
 
   @override
@@ -17,6 +19,7 @@ class Article extends Model {
       : title = json['title'],
         content = json['content'],
         author = json['author'],
+        thumbnail = json['thumbnail'],
         super.fromJson(json);
 
   @override
