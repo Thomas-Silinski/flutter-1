@@ -4,12 +4,14 @@ class User extends Model {
   String name;
   String email;
   String password;
+  String? picture;
 
   User({
     String? id,
     required this.name,
     required this.email,
     required this.password,
+    this.picture,
   }) : super(id: id);
 
   @override
@@ -17,6 +19,7 @@ class User extends Model {
       : name = json['name'],
         email = json['email'],
         password = json['password'],
+        picture = json['picture'],
         super.fromJson(json);
 
   @override
@@ -24,6 +27,7 @@ class User extends Model {
         'name': name,
         'email': email,
         'password': password,
+        'picture': picture,
         'id': id,
       };
 }
