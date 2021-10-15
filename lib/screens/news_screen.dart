@@ -43,13 +43,6 @@ class NewsScreen extends StatelessWidget {
                       .toList(),
                 ),
               ),
-              ElevatedButton(
-                onPressed: () => articleController.create(Article(
-                  content: 'fake content',
-                  title: 'fake title',
-                )),
-                child: const Text('Create Article'),
-              ),
             ],
           ),
         ),
