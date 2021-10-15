@@ -29,4 +29,8 @@ class Article extends Model {
         'author': author,
         'id': id,
       };
+
+  void updateThumbnail(String thumbnail) {
+    this.thumbnail = thumbnail;
+  }
 }
