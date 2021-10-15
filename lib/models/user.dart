@@ -30,4 +30,8 @@ class User extends Model {
         'picture': picture,
         'id': id,
       };
+
+  void updatePicture(String picture) {
+    this.picture = picture;
+  }
 }
