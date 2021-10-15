@@ -20,7 +20,7 @@ class Article extends Model {
         super.fromJson(json);
 
   @override
-  Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => <String, dynamic>{
         'title': title,
         'content': content,
         'author': author,
