@@ -1,25 +1,29 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'model.dart';
 
 class User extends Model {
   String name;
   String email;
   String password;
-  String? picture;
+  List<int>? picture;
 
   User({
     String? id,
     required this.name,
     required this.email,
     required this.password,
-    this.picture,
-  }) : super(id: id);
+    File? picture,
+  })  : picture = picture?.readAsBytesSync(),
+        super(id: id);
 
   @override
   User.fromJson(Map<String, dynamic> json)
       : name = json['name'],
         email = json['email'],
         password = json['password'],
-        picture = json['picture'],
+        picture = base64Decode(json['picture']),
         super.fromJson(json);
 
   @override
@@ -27,11 +31,11 @@ class User extends Model {
         'name': name,
         'email': email,
         'password': password,
-        'picture': picture,
+        'picture': picture != null ? base64Encode(picture!) : null,
         'id': id,
       };
 
-  void updatePicture(String picture) {
-    this.picture = picture;
+  void updatePicture(File picture) {
+    this.picture = picture.readAsBytesSync();
   }
 }

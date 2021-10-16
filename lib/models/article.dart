@@ -1,25 +1,29 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'model.dart';
 
 class Article extends Model {
   String title;
   String content;
   String author;
-  String thumbnail;
+  List<int> thumbnail;
 
   Article({
     String? id,
     required this.title,
     required this.content,
     required this.author,
-    required this.thumbnail,
-  }) : super(id: id);
+    required File thumbnail,
+  })  : thumbnail = thumbnail.readAsBytesSync(),
+        super(id: id);
 
   @override
   Article.fromJson(Map<String, dynamic> json)
       : title = json['title'],
         content = json['content'],
         author = json['author'],
-        thumbnail = json['thumbnail'],
+        thumbnail = base64Decode(json['thumbnail']),
         super.fromJson(json);
 
   @override
@@ -27,10 +31,11 @@ class Article extends Model {
         'title': title,
         'content': content,
         'author': author,
+        'thumbnail': base64Encode(thumbnail),
         'id': id,
       };
 
-  void updateThumbnail(String thumbnail) {
-    this.thumbnail = thumbnail;
+  void updateThumbnail(File thumbnail) {
+    this.thumbnail = thumbnail.readAsBytesSync();
   }
 }
