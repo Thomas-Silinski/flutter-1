@@ -23,7 +23,8 @@ class User extends Model {
       : name = json['name'],
         email = json['email'],
         password = json['password'],
-        picture = base64Decode(json['picture']),
+        picture =
+            json['picture'] != null ? base64Decode(json['picture']) : null,
         super.fromJson(json);
 
   @override
