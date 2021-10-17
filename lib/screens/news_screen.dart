@@ -1,6 +1,9 @@
+import 'dart:convert';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project/controllers/article.dart';
+import 'package:project/mock/store.dart';
 import 'package:project/models/article.dart';
 import 'package:project/components/post.dart';
 
@@ -33,10 +36,14 @@ class NewsScreen extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 15.0),
                     child: ElevatedButton(
                       style: styleButton,
-                      onPressed: () => articleController.create(Article(
-                        content: 'fake content fake content vfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake content',
-                        title: 'fake title',
-                      )),
+                      onPressed: () => articleController.create(
+                        Article(
+                          thumbnail: File('../mock/assets/money.png'),
+                          author: 'Jean-Pierre',
+                          content: 'fake content fake content vfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake content',
+                          title: 'fake title',
+                        )
+                      ),
                       child: const Text('+  Create Article'),
                     ),
                   ),

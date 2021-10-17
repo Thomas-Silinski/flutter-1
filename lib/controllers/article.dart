@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:project/models/article.dart';
+import 'package:project/models/user.dart';
 
 import 'controller.dart';
 
@@ -44,6 +45,10 @@ class ArticleController extends AppController {
 
   Article? find(String id) => _articles.firstWhere(
         (Article article) => article.id == id,
+      );
+
+  Iterable<Article> findByAuthor(User author) => _articles.where(
+        (Article article) => article.author == author.id,
       );
 
   Iterable<Article> search(String title) => _articles.where(
