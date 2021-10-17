@@ -16,7 +16,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   void login() {
     User? user = userController.login(
-      'toto@haricot.mail',
+      'publisher@nytimes.com',
       '5up3R-51cR3T-pA55W0RD',
     );
     if (user == null) {
