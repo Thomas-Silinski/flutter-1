@@ -62,4 +62,8 @@ class UserController extends AppController {
     );
     return currentUser;
   }
+
+  void logout() {
+    currentUser = null;
+  }
 }
