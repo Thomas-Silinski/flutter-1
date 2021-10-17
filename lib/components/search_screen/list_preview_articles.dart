@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:project/components/gradient_text.dart';
 import 'package:project/constants/colors.dart';
@@ -37,8 +39,7 @@ class ListPreviewArticles extends StatelessWidget {
                   width: size,
                   child: _CardArticle(
                     title: listArticles[index].title,
-                    imgUrl:
-                        'https://www.japanfm.fr/wp-content/uploads/2021/03/Scissor-Seven-Saison-3-Date-de-sortie-et-a-quoi.jpg',
+                    imgBytes: listArticles[index].thumbnail,
                   ),
                 ),
               ),
@@ -54,11 +55,11 @@ class _CardArticle extends StatelessWidget {
   const _CardArticle({
     Key? key,
     required this.title,
-    required this.imgUrl,
+    required this.imgBytes,
   }) : super(key: key);
 
   final String title;
-  final String imgUrl;
+  final Uint8List imgBytes;
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +69,8 @@ class _CardArticle extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          Expanded(
+          Padding(
+            padding: const EdgeInsets.only(bottom: 8.0),
             child: GradientText(
               text: title,
               gradient: const LinearGradient(
@@ -80,11 +82,15 @@ class _CardArticle extends StatelessWidget {
               style: Theme.of(context).textTheme.headline3,
             ),
           ),
-          // TODO(Melvyn): replace by image of article
-          Image.network(
-            imgUrl,
-            fit: BoxFit.cover,
-          )
+          Expanded(
+            child: SizedBox(
+              width: double.infinity,
+              child: Image.memory(
+                imgBytes,
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
         ],
       ),
     );
