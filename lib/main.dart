@@ -22,7 +22,7 @@ class Routing extends StatelessWidget {
     return GetMaterialApp(
       theme: Themes().darkTheme,
       initialRoute: '/',
-      getPages: [
+      getPages: <GetPage<dynamic>>[
         GetPage<SplashScreen>(
           name: '/',
           page: () => const SplashScreen(),
