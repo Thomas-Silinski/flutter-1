@@ -8,9 +8,12 @@ import 'constants/routes.dart';
 import 'screens/auth/login_screen.dart';
 import 'screens/splash_screen.dart';
 import 'themes/themes.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter/rendering.dart';
 
 void main() async {
   await GetStorage.init();
+  debugPaintSizeEnabled=true;
   runApp(const Routing());
 }
 

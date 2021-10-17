@@ -29,32 +29,73 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text(
-                'LOGIN PAGE',
-                style: Theme.of(context).textTheme.headline1,
+    return DefaultTextStyle(
+      style: Theme.of(context).textTheme.bodyText2!,
+      child: LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints viewportConstraints) {
+          return SingleChildScrollView(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                minHeight: viewportConstraints.maxHeight,
               ),
-              Text(
-                "Blop I'm the subtitle",
-                style: Theme.of(context).textTheme.bodyText1,
+              child: IntrinsicHeight(
+                child: Column(
+                  children: <Widget>[
+                    Expanded(
+                      flex: 2,
+                      child: Container(
+                        alignment: Alignment.center,
+                        child: const Text(
+                          'Welcome\non\nEasy App',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: 40.0),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 2,
+                      child: Container(
+                          alignment: Alignment.center,
+                          child: _buildTextFields()),
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: Container(
+                          alignment: Alignment.center,
+                          child: Column(children: <Widget>[
+                            ElevatedButton(
+                              onPressed: login,
+                              child: const Text('Login'),
+                            ),
+                            ElevatedButton(
+                              onPressed: () => Get.offNamed(registerRoute),
+                              child: const Text('No account ? Go to register'),
+                            ),
+                          ])),
+                    ),
+                  ],
+                ),
               ),
-              ElevatedButton(
-                onPressed: login,
-                child: const Text('Login'),
-              ),
-              ElevatedButton(
-                onPressed: () => Get.offNamed(registerRoute),
-                child: const Text('No account ? Go to register'),
-              ),
-            ],
-          ),
-        ),
+            ),
+          );
+        },
       ),
     );
   }
+}
+
+Widget _buildTextFields() {
+  return Scaffold(
+    body: Column(
+      children: const <Widget>[
+        TextField(
+          decoration: InputDecoration(labelText: 'Email'),
+        ),
+        TextField(
+          decoration: InputDecoration(labelText: 'Password'),
+          obscureText: true,
+        ),
+      ],
+    ),
+  );
 }

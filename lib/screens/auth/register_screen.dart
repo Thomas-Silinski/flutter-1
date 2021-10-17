@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter/widgets.dart';
 import 'package:project/constants/routes.dart';
+import 'package:get/get.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -12,28 +14,87 @@ class RegisterScreen extends StatefulWidget {
 class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text(
-                'LOGIN PAGE',
-                style: Theme.of(context).textTheme.headline1,
+    return DefaultTextStyle(
+      style: Theme.of(context).textTheme.bodyText2!,
+      child: LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints viewportConstraints) {
+          return SingleChildScrollView(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                minHeight: viewportConstraints.maxHeight,
               ),
-              Text(
-                "Blop I'm the subtitle",
-                style: Theme.of(context).textTheme.bodyText1,
+              child: IntrinsicHeight(
+                child: Column(
+                  children: <Widget>[
+                    Expanded(
+                      flex: 2,
+                      child: Container(
+                        // A fixed-height child.
+                        //color: const Color(0xffeeee00), // Yellow
+                        alignment: Alignment.center,
+                        child: const Text(
+                          'Welcome\non\nEasy App',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: 40.0),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 2,
+                      child: Container(
+                          //color: const Color(0xffee0000), // Red
+                          alignment: Alignment.center,
+                          child: _buildTextFields()),
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: Container(
+                          //color: const Color(0xffee0000), // Red
+                          alignment: Alignment.center,
+                          child: Column(children: <Widget>[
+                            ElevatedButton(
+                              onPressed: () => Get.offNamed(loginRoute),
+                              child: const Text('Register'),
+                            ),
+                            ElevatedButton(
+                              onPressed: () => Get.offNamed(loginRoute),
+                              child: const Text(
+                                  'Already have an account ? Go to login'),
+                            ),
+                          ])),
+                    ),
+                  ],
+                ),
               ),
-              ElevatedButton(
-                onPressed: () => Get.offNamed(loginRoute),
-                child: const Text('GO TO LOGIN'),
-              ),
-            ],
-          ),
-        ),
+            ),
+          );
+        },
       ),
     );
   }
+}
+
+Widget _buildTextFields() {
+  return Scaffold(
+      body: Column(
+    children: const <Widget>[
+      TextField(
+        decoration: InputDecoration(
+            border: OutlineInputBorder(), labelText: 'Username'),
+      ),
+      //SizedBox(height: 10),
+      TextField(
+        decoration: InputDecoration(
+          border: OutlineInputBorder(),
+          labelText: 'Email',
+        ),
+      ),
+      //SizedBox(height: 10),
+      TextField(
+        decoration: InputDecoration(
+            border: OutlineInputBorder(), labelText: 'Password'),
+        obscureText: true,
+      ),
+    ],
+  ));
 }
