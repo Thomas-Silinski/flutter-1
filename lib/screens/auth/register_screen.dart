@@ -79,20 +79,15 @@ Widget _buildTextFields() {
       body: Column(
     children: const <Widget>[
       TextField(
-        decoration: InputDecoration(
-            border: OutlineInputBorder(), labelText: 'Username'),
+        decoration: InputDecoration(labelText: 'Username'),
       ),
       //SizedBox(height: 10),
       TextField(
-        decoration: InputDecoration(
-          border: OutlineInputBorder(),
-          labelText: 'Email',
-        ),
+        decoration: InputDecoration(labelText: 'Email'),
       ),
       //SizedBox(height: 10),
       TextField(
-        decoration: InputDecoration(
-            border: OutlineInputBorder(), labelText: 'Password'),
+        decoration: InputDecoration(labelText: 'Password'),
         obscureText: true,
       ),
     ],
