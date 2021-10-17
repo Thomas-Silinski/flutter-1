@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'model.dart';
 
@@ -7,7 +8,7 @@ class User extends Model {
   String name;
   String email;
   String password;
-  List<int>? picture;
+  Uint8List? picture;
 
   User({
     String? id,

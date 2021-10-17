@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'model.dart';
 
@@ -7,7 +8,7 @@ class Article extends Model {
   String title;
   String content;
   String author;
-  List<int> thumbnail;
+  Uint8List thumbnail;
 
   Article({
     String? id,
