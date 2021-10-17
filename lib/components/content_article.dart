@@ -20,7 +20,7 @@ class ContentArticle extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 5.0),
       child: SizedBox(
         height: 105,
-        width: 400,
+        width: MediaQuery.of(context).size.width/1.1,
         child: Row(
           children: <Widget>[
             Image.network(
