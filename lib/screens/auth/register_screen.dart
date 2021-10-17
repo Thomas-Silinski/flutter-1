@@ -14,9 +14,8 @@ class RegisterScreen extends StatefulWidget {
 class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
-    return DefaultTextStyle(
-      style: Theme.of(context).textTheme.bodyText2!,
-      child: LayoutBuilder(
+    return Scaffold(
+      body: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints viewportConstraints) {
           return SingleChildScrollView(
             child: ConstrainedBox(
@@ -29,8 +28,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     Expanded(
                       flex: 2,
                       child: Container(
-                        // A fixed-height child.
-                        //color: const Color(0xffeeee00), // Yellow
                         alignment: Alignment.center,
                         child: const Text(
                           'Welcome\non\nEasy App',
@@ -42,14 +39,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     Expanded(
                       flex: 2,
                       child: Container(
-                          //color: const Color(0xffee0000), // Red
                           alignment: Alignment.center,
                           child: _buildTextFields()),
                     ),
                     Expanded(
                       flex: 1,
                       child: Container(
-                          //color: const Color(0xffee0000), // Red
                           alignment: Alignment.center,
                           child: Column(children: <Widget>[
                             ElevatedButton(
