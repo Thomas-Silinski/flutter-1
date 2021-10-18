@@ -12,12 +12,21 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final UserController userController = Get.put(UserController());
+  final UserController userController = Get.find<UserController>();
+
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   void login() {
+    if (_emailController.text.isEmpty || _passwordController.text.isEmpty) {
+      Get.snackbar('Error', 'Please verify your informations');
+      return;
+    }
     User? user = userController.login(
-      'publisher@nytimes.com',
-      '5up3R-51cR3T-pA55W0RD',
+      // 'publisher@nytimes.com',
+      // '5up3R-51cR3T-pA55W0RD',
+      _emailController.text,
+      _passwordController.text,
     );
     if (user == null) {
       Get.snackbar('Login failed', 'wrong credentials');
@@ -54,14 +63,19 @@ class _LoginScreenState extends State<LoginScreen> {
                     Expanded(
                       flex: 2,
                       child: Container(
-                          alignment: Alignment.center,
-                          child: _buildTextFields()),
+                        alignment: Alignment.center,
+                        child: _BuildTextFields(
+                          emailController: _emailController,
+                          passwordController: _passwordController,
+                        ),
+                      ),
                     ),
                     Expanded(
                       flex: 1,
                       child: Container(
-                          alignment: Alignment.center,
-                          child: Column(children: <Widget>[
+                        alignment: Alignment.center,
+                        child: Column(
+                          children: <Widget>[
                             ElevatedButton(
                               onPressed: login,
                               child: const Text('Login'),
@@ -70,7 +84,9 @@ class _LoginScreenState extends State<LoginScreen> {
                               onPressed: () => Get.offNamed(registerRoute),
                               child: const Text('No account ? Go to register'),
                             ),
-                          ])),
+                          ],
+                        ),
+                      ),
                     ),
                   ],
                 ),
@@ -83,18 +99,38 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 }
 
-Widget _buildTextFields() {
-  return Scaffold(
-    body: Column(
-      children: const <Widget>[
-        TextField(
-          decoration: InputDecoration(labelText: 'Email'),
+class _BuildTextFields extends StatelessWidget {
+  const _BuildTextFields({
+    Key? key,
+    required this.emailController,
+    required this.passwordController,
+  }) : super(key: key);
+
+  final TextEditingController emailController;
+  final TextEditingController passwordController;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 25),
+        child: Column(
+          children: <Widget>[
+            TextField(
+              controller: emailController,
+              decoration: const InputDecoration(labelText: 'Email'),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 10.0),
+              child: TextField(
+                controller: passwordController,
+                decoration: const InputDecoration(labelText: 'Password'),
+                obscureText: true,
+              ),
+            ),
+          ],
         ),
-        TextField(
-          decoration: InputDecoration(labelText: 'Password'),
-          obscureText: true,
-        ),
-      ],
-    ),
-  );
+      ),
+    );
+  }
 }
