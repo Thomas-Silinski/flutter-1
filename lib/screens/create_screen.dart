@@ -112,6 +112,7 @@ class CreateScreen extends StatelessWidget {
                           Column(
                             children: <Widget>[
                               FloatingActionButton(
+                                heroTag: null,
                                 backgroundColor: kPrimaryGradient2,
                                 onPressed: () => picker
                                     .pickImage(source: ImageSource.gallery)
@@ -121,6 +122,7 @@ class CreateScreen extends StatelessWidget {
                               ),
                               const SizedBox(height: 8),
                               FloatingActionButton(
+                                heroTag: null,
                                 backgroundColor: kPrimaryGradient2,
                                 onPressed: () => picker
                                     .pickImage(source: ImageSource.camera)
