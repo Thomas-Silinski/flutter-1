@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:project/constants/routes.dart';
 import 'package:project/controllers/article.dart';
 import 'package:project/models/article.dart';
 
@@ -29,15 +30,18 @@ class NewsScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: articleController.articles
                       .map(
-                        (Article a) => Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Text('${a.title}, ${a.content}, ${a.id}'),
-                            ElevatedButton(
-                              onPressed: () => articleController.delete(a.id),
-                              child: const Text('Delete this'),
-                            ),
-                          ],
+                        (Article a) => GestureDetector(
+                          onTap: () => Get.toNamed(articleRoute, parameters: <String, String>{'id': a.id}),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Text('${a.title}, ${a.content}, ${a.id}'),
+                              ElevatedButton(
+                                onPressed: () => articleController.delete(a.id),
+                                child: const Text('Delete this'),
+                              ),
+                            ],
+                          ),
                         ),
                       )
                       .toList(),

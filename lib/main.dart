@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:project/home.dart';
 import 'package:project/screens/auth/register_screen.dart';
+import 'package:project/screens/vue_article_screen.dart';
 
 import 'constants/routes.dart';
 import 'screens/auth/login_screen.dart';
@@ -38,6 +39,10 @@ class Routing extends StatelessWidget {
         GetPage<Home>(
           name: homeRoute,
           page: () => const Home(),
+        ),
+        GetPage<Home>(
+          name: articleRoute,
+          page: () => const VueArticleScreen(),
         ),
       ],
     );
