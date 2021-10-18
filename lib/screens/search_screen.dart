@@ -96,7 +96,7 @@ class _SearchBody extends StatelessWidget {
               padding: const EdgeInsets.only(top: 10),
               child: ListPreviewArticles(
                 listArticles: controller.articles,
-                title: 'Articles recommend for you',
+                title: 'Articles recommended for you',
                 size: 170,
               ),
             ),
@@ -104,7 +104,7 @@ class _SearchBody extends StatelessWidget {
               padding: const EdgeInsets.only(top: 10),
               child: ListPreviewArticles(
                 listArticles: controller.articles,
-                title: 'Users recommend for you',
+                title: 'Users recommended for you',
                 size: 170,
               ),
             ),
