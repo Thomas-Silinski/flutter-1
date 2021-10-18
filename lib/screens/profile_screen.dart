@@ -40,7 +40,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       });
       Navigator.of(context).pop(_textEditingController.text);
     } else {
-      Get.snackbar('Login failed', 'Impossible to set an empty name');
+      Get.snackbar('Error', 'Impossible to set an empty name');
     }
   }
 
