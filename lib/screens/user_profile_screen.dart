@@ -27,6 +27,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   void initState() {
     user = userController.find(widget.id);
+    if (user != null) {
+      Get.off('/home');
+    }
     super.initState();
   }
   final ButtonStyle styleButton =

@@ -52,6 +52,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
     }
   }
 
+  bool onPress() {
+    if (_textEditingController.text != '') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   logout() {
     userController.logout();
     Get.offAllNamed('/');
@@ -91,8 +99,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     child: const Text('Cancel'),
                                   ),
                                   TextButton(
-                                    onPressed: () => submit(),
-                                    child: const Text('OK'),
+                                    onPressed: () => onPress() ? submit() : null,
+                                    child: const Text('Change'),
                                   ),
                                 ],
                               ),
