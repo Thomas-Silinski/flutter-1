@@ -5,12 +5,14 @@ class GradientText extends StatelessWidget {
     Key? key,
     required this.text,
     required this.gradient,
+    this.maxLine = 2,
     this.style,
   }) : super(key: key);
 
   final String text;
   final TextStyle? style;
   final Gradient gradient;
+  final int maxLine;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +24,7 @@ class GradientText extends StatelessWidget {
       child: Text(
         text,
         style: style,
-        maxLines: 2,
+        maxLines: maxLine,
         overflow: TextOverflow.ellipsis,
       ),
     );
