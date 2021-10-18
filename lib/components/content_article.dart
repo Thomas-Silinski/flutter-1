@@ -29,7 +29,7 @@ class ContentArticle extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 5.0),
       child: SizedBox(
         height: 105,
-        width: MediaQuery.of(context).size.width/1.1,
+        width: MediaQuery.of(context).size.width / 1.1,
         child: Row(
           children: <Widget>[
             Image.memory(
@@ -39,7 +39,8 @@ class ContentArticle extends StatelessWidget {
             ),
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 5.0),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 0.0, horizontal: 5.0),
                 child: _ArticleDescription(
                   title: title,
                   subtitle: subtitle,
@@ -71,28 +72,23 @@ class _ArticleDescription extends StatefulWidget {
 }
 
 class _ArticleDescriptionState extends State<_ArticleDescription> {
-  final UserController userController = Get.find<UserController>();
-  final ArticleController articleController = Get.find<ArticleController>();
-  late User? user;
-  late Article? article;
-  late bool isMine;
+  final UserController _userController = Get.find<UserController>();
+  final ArticleController _articleController = Get.find<ArticleController>();
+  late User? _user;
+  late Article? _article;
+  bool _isMine = false;
 
   @override
   void initState() {
-    user = userController.currentUser;
-    if (user != null) {
-      article = articleController.find(widget.id);
-      if (article!.author == user!.id) {
-        isMine = true;
-      } else {
-        isMine = false;
+    _user = _userController.currentUser;
+    if (_user != null) {
+      _article = _articleController.find(widget.id);
+      if (_article!.author == _user!.id) {
+        _isMine = true;
       }
-    } else {
-      isMine = false;
     }
     super.initState();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -117,7 +113,8 @@ class _ArticleDescriptionState extends State<_ArticleDescription> {
                   ),
                 ),
               ),
-              Expanded(child: Text(
+              Expanded(
+                child: Text(
                   widget.subtitle,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
@@ -130,17 +127,20 @@ class _ArticleDescriptionState extends State<_ArticleDescription> {
             ],
           ),
         ),
-        Expanded(child: Align(
+        Expanded(
+          child: Align(
             alignment: Alignment.bottomRight,
-            child: isMine ? TextButton(
-              style: TextButton.styleFrom(
-                primary: Colors.white,
-              ),
-              child: const Text('Delete'),
-              onPressed: () {
-                articleController.delete(widget.id);
-              },
-            ) : null,
+            child: _isMine
+                ? TextButton(
+                    style: TextButton.styleFrom(
+                      primary: Colors.white,
+                    ),
+                    child: const Text('Delete'),
+                    onPressed: () {
+                      _articleController.delete(widget.id);
+                    },
+                  )
+                : null,
           ),
         )
       ],
