@@ -23,6 +23,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   late User? _user;
 
+  final TextEditingController _textEditingController = TextEditingController();
+  final String? onChanged = '';
+
   @override
   void initState() {
     _user = _userController.currentUser;
@@ -30,15 +33,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   void submit() {
-    _user!.name = _textEditingController.text;
-    setState(() {
-      _user!.name;
-    });
-    Navigator.of(context).pop(_textEditingController.text);
+    if (_textEditingController.text.isNotEmpty) {
+      _user!.name = _textEditingController.text;
+      setState(() {
+        _user!.name;
+      });
+      Navigator.of(context).pop(_textEditingController.text);
+    } else {
+      Get.snackbar('Error', 'Impossible to set an empty name');
+    }
   }
-
-  final TextEditingController _textEditingController = TextEditingController();
-  final String? onChanged = '';
 
   void updateThumbnail(XFile? value) {
     if (value != null) {
