@@ -19,7 +19,6 @@ class _HomeState extends State<Home> {
     SearchScreen(),
     ProfileScreen(),
   ];
-  final ArticleController articleController = Get.put(ArticleController());
 
   void _onItemTapped(int index) {
     setState(() {

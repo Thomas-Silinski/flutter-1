@@ -2,10 +2,12 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:project/constants/colors.dart';
 import 'package:project/controllers/article.dart';
 import 'package:project/controllers/user.dart';
 import 'package:project/models/article.dart';
 import 'package:project/models/user.dart';
+import 'package:project/components/gradient_text.dart';
 
 class ContentArticle extends StatelessWidget {
   const ContentArticle({
@@ -53,7 +55,7 @@ class ContentArticle extends StatelessWidget {
 }
 
 class _ArticleDescription extends StatefulWidget {
-  _ArticleDescription({
+  const _ArticleDescription({
     Key? key,
     required this.title,
     required this.subtitle,
@@ -103,14 +105,15 @@ class _ArticleDescriptionState extends State<_ArticleDescription> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Expanded(child: Text(
-                  widget.title,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                    fontSize: 14.0,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFFF54B64),
+              Expanded(
+                child: GradientText(
+                  text: widget.title,
+                  maxLine: 1,
+                  gradient: const LinearGradient(
+                    colors: <Color>[
+                      kPrimaryGradient1,
+                      kPrimaryGradient2,
+                    ],
                   ),
                 ),
               ),

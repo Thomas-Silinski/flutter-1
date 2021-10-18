@@ -6,6 +6,7 @@ import 'package:project/controllers/user.dart';
 import 'package:project/models/article.dart';
 import 'package:project/components/post.dart';
 import 'package:project/models/user.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -16,24 +17,45 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   final UserController userController = Get.find<UserController>();
-
   final ArticleController articleController = Get.find<ArticleController>();
 
   late User? user;
-
   late Iterable<Article> articles;
 
   @override
   void initState() {
     user = userController.currentUser;
-    // if (user == null) {
-      // redirect
-    // }
     super.initState();
   }
 
+  void submit(){
+    user!.name = _textEditingController.text;
+    setState(() {
+      user!.name;
+    });
+    Navigator.of(context).pop(_textEditingController.text);
+  }
+
+  final ImagePicker picker = ImagePicker();
+  final TextEditingController _textEditingController = TextEditingController();
+  final String? onChanged = '';
   final ButtonStyle styleButton =
       ElevatedButton.styleFrom(textStyle: const TextStyle(fontSize: 16), fixedSize: const Size(150, 40), primary: const Color(0xFFF54B64),);
+
+   void updateThumbnail(XFile? value) {
+    if (value != null) {
+      final File thumbnailFile = File(value.path);
+      user!.updatePicture(thumbnailFile);
+      setState(() {
+        user!.picture;
+      });
+    }
+  }
+
+  logout() {
+    userController.logout();
+    Get.offAllNamed('/');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,10 +71,38 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     children: <Widget>[
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 15.0),
-                        child: Text(
-                          user!.name,
-                          style: Theme.of(context).textTheme.headline1,
-                        ),
+                        child: InkWell(
+                          splashColor: Colors.blue.withAlpha(30),
+                          onTap: () {
+                            showDialog<String>(
+                              context: context,
+                              builder: (BuildContext context) => AlertDialog(
+                                title: const Text('Change username'),
+                                content: TextField(
+                                  controller: _textEditingController,
+                                  decoration: const InputDecoration(
+                                    border: OutlineInputBorder(),
+                                    labelText: 'Username',
+                                  ),
+                                ),
+                                actions: <Widget>[
+                                  TextButton(
+                                    onPressed: () => Navigator.pop(context, 'Cancel'),
+                                    child: const Text('Cancel'),
+                                  ),
+                                  TextButton(
+                                    onPressed: () => submit(),
+                                    child: const Text('OK'),
+                                  ),
+                                ],
+                              ),
+                            );
+                          },
+                          child: Text(
+                            user!.name,
+                            style: Theme.of(context).textTheme.headline1,
+                          ),
+                        )
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 15.0),
@@ -66,14 +116,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 15.0),
                         child: ElevatedButton(
                           style: styleButton,
-                          onPressed: () => articleController.create(
-                            Article(
-                              thumbnail: File('../mock/assets/money.png'),
-                              author: 'Jean-Pierre',
-                              content: 'fake content fake content vfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake content',
-                              title: 'fake title',
-                            )
-                          ),
+                          onPressed: () => (logout()),
                           child: const Text('Logout'),
                         ),
                       ),
@@ -83,11 +126,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                   Padding (
                     padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 15.0),
-                    child: Image.memory(
-                      user!.picture!,
-                      fit: BoxFit.cover,
-                      height: 75,
-                    ),
+                    child: InkWell(
+                      splashColor: Colors.blue.withAlpha(30),
+                      onTap: () {
+                        picker
+                        .pickImage(source: ImageSource.gallery)
+                        .then(updateThumbnail);
+                      },
+                      child: Image.memory(
+                        user!.picture!,
+                        fit: BoxFit.cover,
+                        height: 75,
+                      ),
+                    )
                   )
                 ],
             ),
