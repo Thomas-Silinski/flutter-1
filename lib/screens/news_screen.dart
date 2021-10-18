@@ -9,12 +9,7 @@ import 'package:project/components/post.dart';
 class NewsScreen extends StatelessWidget {
   NewsScreen({Key? key}) : super(key: key);
 
-  final ButtonStyle styleButton = ElevatedButton.styleFrom(
-    textStyle: const TextStyle(fontSize: 16),
-    fixedSize: const Size(150, 40),
-    primary: const Color(0xFFF54B64),
-  );
-  final ArticleController articleController = Get.find<ArticleController>();
+  final ArticleController _articleController = Get.find<ArticleController>();
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +38,7 @@ class NewsScreen extends StatelessWidget {
                   Obx(
                     () => Column(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: articleController.articles
+                      children: _articleController.articles
                           .map(
                             (Article a) => Row(
                               mainAxisAlignment: MainAxisAlignment.center,
