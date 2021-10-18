@@ -13,9 +13,13 @@ class SplashScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text(
-                'SPLASH SCREEN',
-                style: Theme.of(context).textTheme.bodyText1,
+              const SizedBox(
+                child: Text(
+                  'Welcome\non\nEasy App',
+                  overflow: TextOverflow.ellipsis,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 40.0),
+                ),
               ),
               ElevatedButton(
                 onPressed: () => Get.offNamed(loginRoute),

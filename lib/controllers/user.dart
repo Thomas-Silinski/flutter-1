@@ -1,4 +1,5 @@
 import 'package:project/models/user.dart';
+import 'package:collection/collection.dart';
 
 import 'controller.dart';
 
@@ -57,7 +58,7 @@ class UserController extends AppController {
 
   /// returns a user if the authentication succeeded, else null
   User? login(String email, String password) {
-    currentUser = _users.firstWhere(
+    currentUser = _users.firstWhereOrNull(
       (User user) => user.email == email && user.password == password,
     );
     return currentUser;
