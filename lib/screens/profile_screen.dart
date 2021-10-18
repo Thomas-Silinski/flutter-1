@@ -2,13 +2,36 @@ import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:get/get.dart';
 import 'package:project/controllers/article.dart';
+import 'package:project/controllers/user.dart';
 import 'package:project/models/article.dart';
 import 'package:project/components/post.dart';
+import 'package:project/models/user.dart';
 
-class ProfileScreen extends StatelessWidget {
-  ProfileScreen({Key? key}) : super(key: key);
+class ProfileScreen extends StatefulWidget {
+  const ProfileScreen({Key? key}) : super(key: key);
 
-  final ArticleController articleController = Get.put(ArticleController());
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  final UserController userController = Get.find<UserController>();
+
+  final ArticleController articleController = Get.find<ArticleController>();
+
+  late User? user;
+
+  late Iterable<Article> articles;
+
+  @override
+  void initState() {
+    user = userController.currentUser;
+    // if (user == null) {
+      // redirect
+    // }
+    super.initState();
+  }
+
   final ButtonStyle styleButton =
       ElevatedButton.styleFrom(textStyle: const TextStyle(fontSize: 16), fixedSize: const Size(150, 40), primary: const Color(0xFFF54B64),);
 
@@ -27,7 +50,7 @@ class ProfileScreen extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 15.0),
                         child: Text(
-                          'Thomas',
+                          user!.name,
                           style: Theme.of(context).textTheme.headline1,
                         ),
                       ),
@@ -35,7 +58,7 @@ class ProfileScreen extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 15.0),
                         child:
                           Text(
-                            'thomas@gmail.com',
+                            user!.email,
                             style: Theme.of(context).textTheme.bodyText1,
                           ),
                       ),
@@ -58,11 +81,12 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   const Spacer(
                   ),
-                  const Padding (
-                    padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 15.0),
-                    child: Image(
+                  Padding (
+                    padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 15.0),
+                    child: Image.memory(
+                      user!.picture!,
+                      fit: BoxFit.cover,
                       height: 75,
-                      image: NetworkImage('https://gem.ec-nantes.fr/wp-content/uploads/2019/01/profil-vide.png'),
                     ),
                   )
                 ],
@@ -86,12 +110,12 @@ class ProfileScreen extends StatelessWidget {
                     Obx(
                     () => Column(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: articleController.articles
+                      children: articleController.findByAuthor(user!)
                           .map(
                             (Article a) => Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
-                                NewsPost(title: a.title, subtitle: a.content, id: a.id,),
+                                NewsPost(title: a.title, subtitle: a.content, thumbnail: a.thumbnail, id: a.id,),
                               ],
                             ),
                           )

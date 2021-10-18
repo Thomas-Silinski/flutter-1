@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:project/controllers/article.dart';
 import 'package:project/models/article.dart';
 import 'package:project/components/post.dart';
-import 'dart:convert';
 
 class NewsScreen extends StatelessWidget {
   NewsScreen({Key? key}) : super(key: key);
@@ -12,10 +11,6 @@ class NewsScreen extends StatelessWidget {
   final ButtonStyle styleButton =
       ElevatedButton.styleFrom(textStyle: const TextStyle(fontSize: 16), fixedSize: const Size(150, 40), primary: const Color(0xFFF54B64),);
   final ArticleController articleController = Get.find<ArticleController>();
-
-  String image(String name) => base64Encode(
-      File('../mock/assets/$name').readAsBytesSync(),
-    );
 
   @override
   Widget build(BuildContext context) {
@@ -57,18 +52,19 @@ class NewsScreen extends StatelessWidget {
                 shrinkWrap: true,
                 children: <Widget> [
                   Obx(
-                  () => Column(
+                  () =>
+                  Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: articleController.articles
-                        .map(
-                          (Article a) => Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              NewsPost(title: a.title, subtitle: a.content, id: a.id,),
-                            ],
-                          ),
-                        )
-                        .toList(),
+                      .map(
+                        (Article a) => Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            NewsPost(title: a.title, subtitle: a.content, thumbnail: a.thumbnail, id: a.id,),
+                          ],
+                        ),
+                      )
+                      .toList(),
                   ),
                 ),
               ],)

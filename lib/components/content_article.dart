@@ -1,6 +1,11 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project/controllers/article.dart';
+import 'package:project/controllers/user.dart';
+import 'package:project/models/article.dart';
+import 'package:project/models/user.dart';
 
 class ContentArticle extends StatelessWidget {
   const ContentArticle({
@@ -11,7 +16,7 @@ class ContentArticle extends StatelessWidget {
     required this.id,
   }) : super(key: key);
 
-  final String thumbnail;
+  final Uint8List thumbnail;
   final String title;
   final String subtitle;
   final String id;
@@ -25,9 +30,10 @@ class ContentArticle extends StatelessWidget {
         width: MediaQuery.of(context).size.width/1.1,
         child: Row(
           children: <Widget>[
-            Image.network(
+            Image.memory(
               thumbnail,
               height: 70,
+              width: 70,
             ),
             Expanded(
               child: Padding(
@@ -46,7 +52,7 @@ class ContentArticle extends StatelessWidget {
   }
 }
 
-class _ArticleDescription extends StatelessWidget {
+class _ArticleDescription extends StatefulWidget {
   _ArticleDescription({
     Key? key,
     required this.title,
@@ -58,7 +64,33 @@ class _ArticleDescription extends StatelessWidget {
   final String subtitle;
   final String id;
 
+  @override
+  State<_ArticleDescription> createState() => _ArticleDescriptionState();
+}
+
+class _ArticleDescriptionState extends State<_ArticleDescription> {
+  final UserController userController = Get.find<UserController>();
   final ArticleController articleController = Get.find<ArticleController>();
+  late User? user;
+  late Article? article;
+  late bool isMine;
+
+  @override
+  void initState() {
+    user = userController.currentUser;
+    if (user != null) {
+      article = articleController.find(widget.id);
+      if (article!.author == user!.id) {
+        isMine = true;
+      } else {
+        isMine = false;
+      }
+    } else {
+      isMine = false;
+    }
+    super.initState();
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +104,7 @@ class _ArticleDescription extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Expanded(child: Text(
-                  title,
+                  widget.title,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: const TextStyle(
@@ -83,7 +115,7 @@ class _ArticleDescription extends StatelessWidget {
                 ),
               ),
               Expanded(child: Text(
-                  subtitle,
+                  widget.subtitle,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: const TextStyle(
@@ -97,15 +129,15 @@ class _ArticleDescription extends StatelessWidget {
         ),
         Expanded(child: Align(
             alignment: Alignment.bottomRight,
-            child: TextButton(
+            child: isMine ? TextButton(
               style: TextButton.styleFrom(
                 primary: Colors.white,
               ),
               child: const Text('Delete'),
               onPressed: () {
-                articleController.delete(id);
+                articleController.delete(widget.id);
               },
-            ),
+            ) : null,
           ),
         )
       ],

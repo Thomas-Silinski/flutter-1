@@ -7,7 +7,7 @@ import 'package:project/components/post.dart';
 import 'package:project/models/user.dart';
 
 class ProfileScreen extends StatefulWidget {
-  ProfileScreen({
+  const ProfileScreen({
     Key? key,
     required this.id,
   }) : super(key: key);
@@ -27,9 +27,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   void initState() {
     user = userController.find(widget.id);
-    if (user != null) {
-      articles = articleController.findByAuthor(user!);
-    }
     super.initState();
   }
   final ButtonStyle styleButton =
@@ -53,11 +50,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                   const Spacer(
                   ),
-                  const Padding (
-                    padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 15.0),
-                    child: Image(
+                  Padding (
+                    padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 15.0),
+                    child: Image.memory(
+                      user!.picture!,
+                      fit: BoxFit.cover,
                       height: 75,
-                      image: NetworkImage('https://gem.ec-nantes.fr/wp-content/uploads/2019/01/profil-vide.png'),
+                      width: 75,
                     ),
                   )
                 ],
@@ -81,16 +80,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     Obx(
                     () => Column(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: articleController.articles
-                          .map(
-                            (Article a) => Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                NewsPost(title: a.title, subtitle: a.content, id: a.id,),
-                              ],
-                            ),
-                          )
-                          .toList(),
+                      children: articleController.findByAuthor(user!)
+                        .map(
+                          (Article a) => Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              NewsPost(title: a.title, subtitle: a.content, thumbnail: a.thumbnail, id: a.id,),
+                            ],
+                          ),
+                        )
+                        .toList(),
                     ),
                   ),
                 ],)

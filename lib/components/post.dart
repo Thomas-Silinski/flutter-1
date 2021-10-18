@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:project/components/content_article.dart';
 
@@ -7,13 +9,13 @@ class NewsPost extends StatelessWidget {
     required this.title,
     required this.subtitle,
     required this.id,
-    this.thumbnail = 'https://static.neopse.com/medias/p/541/site/27/7e/4a/277e4a89cd55292451d78bea1f08b1649d3b481d.png?v=v1',
+    required this.thumbnail,
   }) : super(key: key);
 
   final String title;
   final String subtitle;
   final String id;
-  final String thumbnail;
+  final Uint8List thumbnail;
 
   @override
   Widget build(BuildContext context) {
