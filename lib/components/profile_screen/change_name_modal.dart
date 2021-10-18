@@ -7,7 +7,7 @@ class ChangeNameModal extends StatelessWidget {
     required this.onSubmit,
   }) : super(key: key);
 
-  final TextEditingController? textEditingController;
+  final TextEditingController textEditingController;
   final void Function()? onSubmit;
 
   @override
@@ -27,7 +27,7 @@ class ChangeNameModal extends StatelessWidget {
           child: const Text('Cancel'),
         ),
         TextButton(
-          onPressed: textEditingController?.text != '' ? onSubmit : null,
+          onPressed: onSubmit,
           child: const Text('Change'),
         ),
       ],
