@@ -39,8 +39,10 @@ class ContentArticle extends StatelessWidget {
             ),
             Expanded(
               child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 0.0, horizontal: 5.0),
+                padding: const EdgeInsets.symmetric(
+                  vertical: 0.0,
+                  horizontal: 5.0,
+                ),
                 child: _ArticleDescription(
                   title: title,
                   subtitle: subtitle,
