@@ -30,14 +30,20 @@ class Themes {
         color: Colors.white,
       ),
     ),
+    iconTheme: const IconThemeData(
+      color: Colors.white,
+    ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
-        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-          RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20.0),
+          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20.0),
+            ),
           ),
-        ),
-      ),
+          textStyle: MaterialStateProperty.all<TextStyle?>(
+            const TextStyle(fontSize: 16),
+          ),
+          backgroundColor: MaterialStateProperty.all<Color>(kPrimaryGradient1)),
     ),
     inputDecorationTheme: InputDecorationTheme(
       fillColor: kDarkGrey.withOpacity(0.6),

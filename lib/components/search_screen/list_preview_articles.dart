@@ -1,8 +1,5 @@
-import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
-import 'package:project/components/gradient_text.dart';
-import 'package:project/constants/colors.dart';
+import 'package:project/components/search_screen/card_article.dart';
 import 'package:project/models/article.dart';
 
 class ListPreviewArticles extends StatelessWidget {
@@ -37,57 +34,12 @@ class ListPreviewArticles extends StatelessWidget {
                 itemCount: listArticles.length,
                 itemBuilder: (BuildContext context, int index) => SizedBox(
                   width: size,
-                  child: _CardArticle(
+                  child: CardArticle(
+                    id: listArticles[index].id,
                     title: listArticles[index].title,
                     imgBytes: listArticles[index].thumbnail,
                   ),
                 ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _CardArticle extends StatelessWidget {
-  const _CardArticle({
-    Key? key,
-    required this.title,
-    required this.imgBytes,
-  }) : super(key: key);
-
-  final String title;
-  final Uint8List imgBytes;
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      color: kDarkGrey,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.only(bottom: 8.0),
-            child: GradientText(
-              text: title,
-              gradient: const LinearGradient(
-                colors: <Color>[
-                  kPrimaryGradient1,
-                  kPrimaryGradient2,
-                ],
-              ),
-              style: Theme.of(context).textTheme.headline3,
-            ),
-          ),
-          Expanded(
-            child: SizedBox(
-              width: double.infinity,
-              child: Image.memory(
-                imgBytes,
-                fit: BoxFit.cover,
               ),
             ),
           ),

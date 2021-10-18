@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project/components/post.dart';
 import 'package:project/components/search_screen/list_preview_articles.dart';
-import 'package:project/components/search_screen/search_bar.dart';
+import 'package:project/components/search_screen/search_screen_header.dart';
 import 'package:project/controllers/article.dart';
 import 'package:project/models/article.dart';
 
@@ -12,7 +12,7 @@ class SearchScreen extends GetView<ArticleController> {
   final RxString _searchInput = ''.obs;
   final RxList<Article> _searchedArticle = <Article>[].obs;
 
-  void _onSearchChanged(String value) {
+  void onSearchChanged(String value) {
     _searchInput.value = value;
     _searchedArticle.value = controller.search(value).toList();
   }
@@ -26,20 +26,9 @@ class SearchScreen extends GetView<ArticleController> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.only(
-                  top: 20,
-                ),
-                child: Text(
-                  'SEARCH',
-                  style: Theme.of(context).textTheme.headline1,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 10.0),
-                child: SearchBarWidget(
-                  onChanged: _onSearchChanged,
-                ),
+              SearchScreenHeader(
+                title: 'SEARCH',
+                onSearchChanged: onSearchChanged,
               ),
               Obx(
                 () => _searchInput.value.isEmpty

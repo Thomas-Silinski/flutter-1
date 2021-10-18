@@ -13,17 +13,17 @@ class SearchBarWidget extends StatelessWidget {
     return TextField(
       onChanged: onChanged,
       textAlignVertical: TextAlignVertical.center,
-      decoration: const InputDecoration(
+      decoration: InputDecoration(
         prefixIcon: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Icon(
             Icons.search,
-            color: Colors.white,
+            color: Theme.of(context).iconTheme.color,
           ),
         ),
-        prefixIconConstraints: BoxConstraints(maxHeight: 20),
+        prefixIconConstraints: const BoxConstraints(maxHeight: 20),
         hintText: 'Search...',
-        contentPadding: EdgeInsets.symmetric(
+        contentPadding: const EdgeInsets.symmetric(
           vertical: 10,
           horizontal: 20,
         ),
