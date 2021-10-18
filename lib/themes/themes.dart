@@ -30,6 +30,9 @@ class Themes {
         color: Colors.white,
       ),
     ),
+    iconTheme: const IconThemeData(
+      color: Colors.white,
+    ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
         shape: MaterialStateProperty.all<RoundedRectangleBorder>(

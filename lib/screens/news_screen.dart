@@ -65,9 +65,9 @@ class NewsScreen extends StatelessWidget {
         onPressed: () => Get.toNamed(createRoute),
         tooltip: 'create new article',
         backgroundColor: kPrimaryGradient1,
-        child: const Icon(
+        child: Icon(
           Icons.create,
-          color: Colors.white,
+          color: Theme.of(context).iconTheme.color,
         ),
       ),
     );

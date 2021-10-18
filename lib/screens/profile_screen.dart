@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'dart:io';
 import 'package:get/get.dart';
+import 'package:project/constants/colors.dart';
 import 'package:project/controllers/article.dart';
 import 'package:project/controllers/user.dart';
 import 'package:project/models/article.dart';
@@ -87,7 +88,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         horizontal: 15.0,
                       ),
                       child: InkWell(
-                        splashColor: Colors.blue.withAlpha(30),
+                        splashColor: kPrimaryGradient2.withOpacity(0.8),
                         onTap: () {
                           showDialog<String>(
                             context: context,
@@ -150,7 +151,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     horizontal: 15.0,
                   ),
                   child: InkWell(
-                    splashColor: Colors.blue.withAlpha(30),
+                    splashColor: kPrimaryGradient2.withOpacity(0.8),
                     onTap: () {
                       picker
                           .pickImage(source: ImageSource.gallery)

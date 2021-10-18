@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project/components/content_article.dart';
+import 'package:project/constants/colors.dart';
 import 'package:project/constants/routes.dart';
 
 class NewsPost extends StatelessWidget {
@@ -24,9 +25,11 @@ class NewsPost extends StatelessWidget {
     return Card(
       elevation: 5,
       child: InkWell(
-        splashColor: Colors.blue.withAlpha(30),
-        onTap: () =>
-            Get.toNamed(articleRoute, parameters: <String, String>{'id': id}),
+        splashColor: kPrimaryGradient2.withOpacity(0.8),
+        onTap: () => Get.toNamed(
+          articleRoute,
+          parameters: <String, String>{'id': id},
+        ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
