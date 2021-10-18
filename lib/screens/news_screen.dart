@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:project/constants/colors.dart';
+import 'package:project/constants/routes.dart';
 import 'package:project/controllers/article.dart';
 import 'package:project/models/article.dart';
 
@@ -46,6 +48,12 @@ class NewsScreen extends StatelessWidget {
             ],
           ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => Get.toNamed(createRoute),
+        tooltip: 'create new article',
+        backgroundColor: kPrimaryGradient1,
+        child: const Icon(Icons.create),
       ),
     );
   }
