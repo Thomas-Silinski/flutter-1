@@ -1,7 +1,9 @@
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:project/components/content_article.dart';
+import 'package:project/constants/routes.dart';
 
 class NewsPost extends StatelessWidget {
   const NewsPost({
@@ -19,26 +21,24 @@ class NewsPost extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Card(
       elevation: 5,
       child: InkWell(
-          splashColor: Colors.blue.withAlpha(30),
-          onTap: () {
-            // Mettre le lien vers l'article _id
-          },
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              ContentArticle(
-                thumbnail: thumbnail,
-                title: title,
-                subtitle: subtitle,
-                id: id,
-              ),
-            ],
-          ),
+        splashColor: Colors.blue.withAlpha(30),
+        onTap: () =>
+            Get.toNamed(articleRoute, parameters: <String, String>{'id': id}),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            ContentArticle(
+              thumbnail: thumbnail,
+              title: title,
+              subtitle: subtitle,
+              id: id,
+            ),
+          ],
         ),
+      ),
     );
   }
 }

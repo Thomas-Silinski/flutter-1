@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:project/components/post.dart';
 import 'package:project/components/search_screen/list_preview_articles.dart';
 import 'package:project/components/search_screen/search_bar.dart';
-import 'package:project/constants/colors.dart';
 import 'package:project/controllers/article.dart';
 import 'package:project/models/article.dart';
 
@@ -44,18 +44,16 @@ class SearchScreen extends GetView<ArticleController> {
               Obx(
                 () => _searchInput.value.isEmpty
                     ? _SearchBody(controller: controller)
-                    // TODO(Melvyn) : Replace by widget in homescreen
                     : Expanded(
                         child: Padding(
                           padding: const EdgeInsets.only(top: 10.0),
                           child: ListView.builder(
                             itemBuilder: (BuildContext context, int index) =>
-                                ListTile(
-                              leading: const Icon(Icons.home),
-                              title: Text(
-                                _searchedArticle[index].title,
-                              ),
-                              tileColor: kDarkGrey,
+                                NewsPost(
+                              title: _searchedArticle[index].title,
+                              subtitle: _searchedArticle[index].content,
+                              thumbnail: _searchedArticle[index].thumbnail,
+                              id: _searchedArticle[index].id,
                             ),
                             itemCount: _searchedArticle.length,
                           ),
