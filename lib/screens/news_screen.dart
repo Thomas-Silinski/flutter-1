@@ -1,19 +1,21 @@
-import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project/controllers/article.dart';
-import 'package:project/mock/store.dart';
 import 'package:project/models/article.dart';
 import 'package:project/components/post.dart';
+import 'dart:convert';
 
 class NewsScreen extends StatelessWidget {
   NewsScreen({Key? key}) : super(key: key);
 
-  // final ArticleController articleController = Get.put(ArticleController());
   final ButtonStyle styleButton =
       ElevatedButton.styleFrom(textStyle: const TextStyle(fontSize: 16), fixedSize: const Size(150, 40), primary: const Color(0xFFF54B64),);
   final ArticleController articleController = Get.find<ArticleController>();
+
+  String image(String name) => base64Encode(
+      File('../mock/assets/$name').readAsBytesSync(),
+    );
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +40,7 @@ class NewsScreen extends StatelessWidget {
                       style: styleButton,
                       onPressed: () => articleController.create(
                         Article(
-                          thumbnail: File('../mock/assets/money.png'),
+                          thumbnail: File('../mock/assets/money.pgn'),
                           author: 'Jean-Pierre',
                           content: 'fake content fake content vfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake contentfake content',
                           title: 'fake title',

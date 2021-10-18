@@ -20,17 +20,24 @@ class NewsPost extends StatelessWidget {
 
     return Card(
       elevation: 5,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          ContentArticle(
-            thumbnail: thumbnail,
-            title: title,
-            subtitle: subtitle,
-            id: id,
+      child: InkWell(
+          splashColor: Colors.blue.withAlpha(30),
+          onTap: () {
+            print('Card tapped.');
+            // Mettre le lien vers l'article _id
+          },
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              ContentArticle(
+                thumbnail: thumbnail,
+                title: title,
+                subtitle: subtitle,
+                id: id,
+              ),
+            ],
           ),
-        ],
-      ),
+        ),
     );
   }
 }

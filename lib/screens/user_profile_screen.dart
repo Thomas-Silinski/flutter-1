@@ -1,13 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project/controllers/article.dart';
+import 'package:project/controllers/user.dart';
 import 'package:project/models/article.dart';
 import 'package:project/components/post.dart';
+import 'package:project/models/user.dart';
 
-class ProfileScreen extends StatelessWidget {
-  ProfileScreen({Key? key}) : super(key: key);
+class ProfileScreen extends StatefulWidget {
+  ProfileScreen({
+    Key? key,
+    required this.id,
+  }) : super(key: key);
 
-  final ArticleController articleController = Get.put(ArticleController());
+  final String id;
+
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  final UserController userController = Get.find<UserController>();
+  final ArticleController articleController = Get.find<ArticleController>();
+  late User? user;
+  late Iterable<Article> articles;
+
+  @override
+  void initState() {
+    user = userController.find(widget.id);
+    if (user != null) {
+      articles = articleController.findByAuthor(user!);
+    }
+    super.initState();
+  }
   final ButtonStyle styleButton =
       ElevatedButton.styleFrom(textStyle: const TextStyle(fontSize: 16), fixedSize: const Size(150, 40), primary: const Color(0xFFF54B64),);
 
@@ -23,7 +47,7 @@ class ProfileScreen extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 15.0),
                     child: Text(
-                      'Thomas',
+                      user!.name,
                       style: Theme.of(context).textTheme.headline1,
                     ),
                   ),

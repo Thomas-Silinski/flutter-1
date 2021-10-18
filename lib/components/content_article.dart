@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:project/controllers/article.dart';
 
 class ContentArticle extends StatelessWidget {
   const ContentArticle({
@@ -45,7 +47,7 @@ class ContentArticle extends StatelessWidget {
 }
 
 class _ArticleDescription extends StatelessWidget {
-  const _ArticleDescription({
+  _ArticleDescription({
     Key? key,
     required this.title,
     required this.subtitle,
@@ -55,6 +57,8 @@ class _ArticleDescription extends StatelessWidget {
   final String title;
   final String subtitle;
   final String id;
+
+  final ArticleController articleController = Get.find<ArticleController>();
 
   @override
   Widget build(BuildContext context) {
@@ -69,10 +73,10 @@ class _ArticleDescription extends StatelessWidget {
             children: <Widget>[
               Expanded(child: Text(
                   title,
-                  maxLines: 2,
+                  maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: const TextStyle(
-                    fontSize: 15.0,
+                    fontSize: 14.0,
                     fontWeight: FontWeight.bold,
                     color: Color(0xFFF54B64),
                   ),
@@ -99,7 +103,7 @@ class _ArticleDescription extends StatelessWidget {
               ),
               child: const Text('Delete'),
               onPressed: () {
-                // articleController.delete(id);
+                articleController.delete(id);
               },
             ),
           ),
