@@ -14,6 +14,6 @@ abstract class AppController extends GetxController {
   @override
   Future<void> onInit() async {
     super.onInit();
-    await _storage.writeIfNull(storeId, mockedStores[storeId]);
+    await _storage.writeIfNull(storeId, await mockedStores[storeId]!());
   }
 }

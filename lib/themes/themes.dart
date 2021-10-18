@@ -6,6 +6,7 @@ class Themes {
   final ThemeData darkTheme = ThemeData.dark().copyWith(
     primaryColor: kSecondaryColor,
     scaffoldBackgroundColor: kSecondaryColor,
+    cardColor: kDarkGrey,
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: kBottonNavigationMenu,
       unselectedItemColor: kDarkGrey,
