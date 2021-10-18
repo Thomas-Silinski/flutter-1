@@ -5,6 +5,7 @@ import 'package:project/controllers/article.dart';
 import 'package:project/controllers/user.dart';
 import 'package:project/home.dart';
 import 'package:project/screens/auth/register_screen.dart';
+import 'package:project/screens/create_screen.dart';
 
 import 'constants/routes.dart';
 import 'screens/auth/login_screen.dart';
@@ -43,6 +44,10 @@ class Routing extends StatelessWidget {
         GetPage<Home>(
           name: homeRoute,
           page: () => const Home(),
+        ),
+        GetPage<CreateScreen>(
+          name: createRoute,
+          page: () => CreateScreen(),
         ),
       ],
     );
