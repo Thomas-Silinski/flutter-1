@@ -25,7 +25,6 @@ class NewsPost extends StatelessWidget {
       child: InkWell(
           splashColor: Colors.blue.withAlpha(30),
           onTap: () {
-            print('Card tapped.');
             // Mettre le lien vers l'article _id
           },
           child: Column(
