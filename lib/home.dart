@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:project/controllers/article.dart';
 import 'package:project/screens/news_screen.dart';
 import 'package:project/screens/profile_screen.dart';
 import 'package:project/screens/search_screen.dart';
@@ -19,7 +17,6 @@ class _HomeState extends State<Home> {
     SearchScreen(),
     const ProfileScreen(),
   ];
-  final ArticleController articleController = Get.put(ArticleController());
 
   void _onItemTapped(int index) {
     setState(() {

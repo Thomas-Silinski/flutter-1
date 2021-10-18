@@ -1,6 +1,6 @@
-# project
+# EasyApp
 
-A new Flutter project.
+An App for all your news
 
 ## Getting Started
 
