@@ -183,7 +183,7 @@ class CreateScreen extends StatelessWidget {
                 }
               : null,
           tooltip: 'Create article',
-          backgroundColor: kPrimaryGradient1,
+          backgroundColor: canSubmit() ? kPrimaryGradient1 : kDarkGrey,
           child: const Icon(
             Icons.save,
           ),
