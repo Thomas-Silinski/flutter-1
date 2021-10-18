@@ -4,9 +4,11 @@ import 'package:project/components/search_screen/search_bar.dart';
 class SearchScreenHeader extends StatelessWidget {
   const SearchScreenHeader({
     Key? key,
+    required this.title,
     required this.onSearchChanged,
   }) : super(key: key);
 
+  final String title;
   final void Function(String)? onSearchChanged;
 
   @override
@@ -19,7 +21,7 @@ class SearchScreenHeader extends StatelessWidget {
             top: 20,
           ),
           child: Text(
-            'SEARCH',
+            title,
             style: Theme.of(context).textTheme.headline1,
           ),
         ),

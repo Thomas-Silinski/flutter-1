@@ -27,6 +27,7 @@ class SearchScreen extends GetView<ArticleController> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               SearchScreenHeader(
+                title: 'SEARCH',
                 onSearchChanged: onSearchChanged,
               ),
               Obx(
